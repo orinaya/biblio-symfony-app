@@ -1,0 +1,89 @@
+<aside class="sidebar">
+	<div class="profile">
+		<div class="profile-pic">
+			{{ app.user.email[:2]|upper }}
+		</div>
+		<h2 class="username">
+			{{ app.user.email }}
+			{% if app.user.isVerified %}
+				<span class="icon-verified-check"></span>
+			{% endif %}
+		</h2>
+		<span class="role">Admin</span>
+	</div>
+
+	<nav class="menu">
+		<ul>
+			<li>
+				<button class="accordion-btn active" onclick="toggleAccordion('livres-menu')">
+					<div>
+						<span class="icon-notebook"></span>
+						Livres
+					</div>
+					<span class="icon-alt-arrow-down"></span>
+				</button>
+				<ul id="livres-menu" class="submenu">
+					<li>
+						<a href="{{ path('app_book_index') }}">Tous les livres</a>
+					</li>
+					<li>
+						<a href="{{ path('app_book_new') }}">Ajouter un livre</a>
+					</li>
+					<li>
+						<a href="#">Catégories</a>
+					</li>
+					<li>
+						<a href="#">Tags</a>
+					</li>
+				</ul>
+			</li>
+
+			<li>
+				<button class="accordion-btn" onclick="toggleAccordion('clients-menu')">
+					<div>
+						<span class="icon-user-circle"></span>
+						Clients
+					</div>
+					<span class="icon-alt-arrow-down"></span>
+				</button>
+				<ul id="clients-menu" class="submenu hidden">
+					<li>
+						<a href="#">Tous les clients</a>
+					</li>
+					<li>
+						<a href="#">Ajouter un client</a>
+					</li>
+				</ul>
+			</li>
+
+			<li>
+				<button class="accordion-btn" onclick="toggleAccordion('reservations-menu')">
+					<div>
+						<span class="icon-cart"></span>
+						Réservations
+					</div>
+					<span class="icon-alt-arrow-down"></span>
+				</button>
+				<ul id="reservations-menu" class="submenu hidden">
+					<li>
+						<a href="#">Toutes les réservations</a>
+					</li>
+					<li>
+						<a href="#">Nouvelle réservation</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+
+	<div class="sidebar-footer">
+		<a href="#" class="settings-btn">
+			<span class="icon-settings"></span>
+			Paramètres
+		</a>
+		<a href="{{ path('app_logout') }}" class="logout-btn">
+			<span class="icon-logout"></span>
+			Se déconnecter
+		</a>
+	</div>
+</aside>

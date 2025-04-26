@@ -8,3 +8,12 @@ import './bootstrap.js';
 import './styles/app.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+
+
+window.toggleAccordion = function(id) {
+    const submenu = document.getElementById(id);
+    submenu.classList.toggle('hidden');
+
+    const button = document.querySelector(`button[onclick="toggleAccordion('${id}')"]`);
+    button.classList.toggle('active');
+}
