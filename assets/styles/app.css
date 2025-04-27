@@ -246,7 +246,7 @@ aside.sidebar {
     cursor: pointer;
 }
 
-.submenu li a {
+.submenu a {
     text-decoration: none;
     color: #5d3b2e;
     font-weight: 400;

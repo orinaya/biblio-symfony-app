@@ -23,18 +23,31 @@
 					<span class="icon-alt-arrow-down"></span>
 				</button>
 				<ul id="livres-menu" class="submenu">
-					<li>
-						<a href="{{ path('app_book_index') }}">Tous les livres</a>
-					</li>
-					<li>
-						<a href="{{ path('app_book_new') }}">Ajouter un livre</a>
-					</li>
-					<li>
-						<a href="#">Catégories</a>
-					</li>
-					<li>
-						<a href="#">Tags</a>
-					</li>
+					<a href="{{ path('app_book_index') }}">
+						<li>
+							Tous les livres
+						</li>
+					</a>
+					<a href="{{ path('app_book_new') }}">
+						<li>
+							Ajouter un livre
+						</li>
+					</a>
+					<a href="{{ path('app_author_index') }}">
+						<li>
+							Auteurs
+						</li>
+					</a>
+					<a href="{{ path('app_category_index') }}">
+						<li>
+							Catégories
+						</li>
+					</a>
+					<a href="{{ path('app_tag_index') }}">
+						<li>
+							Tags
+						</li>
+					</a>
 				</ul>
 			</li>
 
