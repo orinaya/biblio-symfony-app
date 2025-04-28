@@ -551,7 +551,8 @@ aside.sidebar {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="number"] {
     width: 100%;
     padding: 12px;
     font-size: 1rem;
@@ -582,7 +583,8 @@ label.form-label {
 
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+input[type="number"]:focus {
     border-color: #BE774B;
     box-shadow: 0 0 5px rgba(190, 119, 75, 0.5);
 }
@@ -590,6 +592,7 @@ input[type="password"]:focus {
 input[type="text"]:focus + label.form-label,
 input[type="email"]:focus + label.form-label,
 input[type="password"]:focus + label.form-label,
+input[type="number"]:focus + label.form-label,
 input.has-content + label.form-label {
     top: -8px;
     left: 16px;
@@ -640,4 +643,193 @@ button > span{
     justify-content: center;
     align-items: center;
     gap: 8px;
+}
+
+.add-btn {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:40px;
+    gap: 10px;
+    background: hsl(79, 43%, 43%);
+    color: hsl(77, 41%, 90%);
+    text-align: center;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+
+    &:hover {
+        background: hsl(79, 43%, 30%);
+        cursor: pointer;
+    }
+}
+
+.back-btn {
+    text-decoration: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:40px;
+    width:fit-content;
+    gap: 10px;
+    background: hsl(0, 60%, 63%);
+    color: hsl(0, 60%, 98%);
+    text-align: center;
+    padding: 0 16px;
+    border-radius: 8px;
+
+    &:hover {
+        background: hsl(0, 60%, 50%);
+        cursor: pointer;
+    }
+}
+
+.base-btn {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:40px;
+    gap: 10px;
+    background: hsl(270, 6%, 94%);
+    color: hsl(250, 5%, 24%);
+    text-align: center;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+
+    &:hover {
+        background: hsl(270, 6%, 90%);
+        cursor: pointer;
+    }
+}
+
+.book-form {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.book-form-row {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.book-form-col {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #4B2D1B;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    color: #4B2D1B;
+    background-color: #FAF2EB;
+    border: 1px solid #F7EADE;
+    border-radius: 10px;
+    outline: none;
+    max-width: -moz-available;
+}
+
+.form-control:focus {
+    border-color: #BE774B;
+    box-shadow: 0 0 5px rgba(190, 119, 75, 0.5);
+}
+
+.book-form-col:has(.image-upload) {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.image-upload {
+    border: 2px dashed #ccc;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    > p {
+        margin: 0;
+    }
+}
+
+.image-preview {
+    max-width: 40%;
+    display: none;
+    border: 1px solid #ccc;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    padding: 10px 20px;
+    background-color: #E57373;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-submit {
+    padding: 10px 20px;
+    background-color: #809D3F;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.category-options,
+.tag-options,
+.language-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-option,
+.tag-option,
+.language-option {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.category-option input,
+.tag-option input,
+.language-option input {
+    margin-right: 5px;
 }

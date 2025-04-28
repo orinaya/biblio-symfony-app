@@ -1,13 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Book{% endblock %}
+{% block title %}Modifier un livre
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Book</h1>
+	<h1>Modifier le livre</h1>
 
-    {{ include('book/_form.html.twig', {'button_label': 'Update'}) }}
+	{% include 'book/form.html.twig' with {'second_button_label': 'Mettre à jour', 'src_img': asset('uploads/images/' ~ book.image), 'add_update':'Modifier'} %}
 
-    <a href="{{ path('app_book_index') }}">back to list</a>
+	<script>
+		image = document.querySelector('.image-preview');
+imageWrapper = document.querySelector('.image-upload');
+if (image.getAttribute('src') === '#') {
+image.style.display = 'none';
+imageWrapper.style.justifyContent = 'center';
+imageWrapper.style.gap = '10px';
+} else {
+image.style.display = 'block';
+imageWrapper.style.justifyContent = 'space-around';
+}
+	</script>
 
-    {{ include('book/_delete_form.html.twig') }}
 {% endblock %}
