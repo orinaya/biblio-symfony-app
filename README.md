@@ -10,8 +10,9 @@
 2. [Stack technique](#2-stack-technique)
 3. [Lancer le projet](#3-lancer-le-projet)
 4. [Modèle Conceptuel des Données (MCD)](#4-modèle-conceptuel-des-données-mcd)
-5. [Remarques](#5-remarques)
-6. [Références](#6-références)
+5. [Proposition de fonctionnalité](#5-proposition-de-fonctionnalité)
+6. [Remarques](#6-remarques)
+7. [Références](#7-références)
 
 ## 1. Équipe
 
@@ -105,6 +106,41 @@ Base de données : nombasededonnées (défini dans .env)
 
 ![MCD](assets/images/biblio-MCD.png)
 
-### 5. Remarques
+### 5. Proposition de fonctionnalité
 
-### 6. Références
+**Système de recommandations personnalisées**
+
+#### Détail de la spécification
+
+Implémentation d'un système de recommandations personnalisées qui suggère aux utilisateurs des livres susceptibles de les intéresser. Les recommandations sont basées sur l'historique d'emprunts de l'utilisateur et les tendances générales de la bibliothèque.
+
+#### Motivation
+
+Cette spécification permet de dynamiser l'application en encourageant les utilisateurs à emprunter des livres, tout en exploitant les données déjà existantes.
+
+#### Nouveaux composants à développer
+
+**Modèle (Entités)**
+
+UserPreference : Stocke les préférences explicites des utilisateurs
+Relations avec User, Category, Author
+Niveau d'intérêt pour chaque préférence
+
+**Contrôleur**
+
+RecommendationController :
+
+- Méthodes pour générer et afficher les recommandations
+- Actions pour les retours utilisateur (feedback, masquer une recommandation)
+
+**Vues**
+
+Dashboard de recommandations : Page principale affichant les suggestions
+Widget de recommandation : Composant intégrable dans d'autres pages
+
+"Vous pourriez aussi aimer..." sur la page de détail d'un livre
+"Découvertes de la semaine" sur la page d'accueil
+
+### 6. Remarques
+
+### 7. Références
