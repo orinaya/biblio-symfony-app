@@ -24,6 +24,7 @@
 
 		<div class="form-group">
 			{{ form_label(form.authors) }}
+			<p>Choisissez un ou plusieurs auteurs.</p>
 			{{ form_widget(form.authors, {'attr': {'class': 'form-control'}}) }}
 		</div>
 
@@ -93,7 +94,7 @@
 	{% endif %}
 </div>
 
-<script>
+ <script>
 	function previewImage(event) {
 const input = event.target;
 const preview = document.querySelector('.image-preview');
