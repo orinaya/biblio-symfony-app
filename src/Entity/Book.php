@@ -116,7 +116,7 @@ class Book
     {
         if (!$this->authors->contains($author)) {
             $this->authors->add($author);
-            // $author->addBook($this);
+            $author->addBook($this);
         }
 
         return $this;
@@ -126,9 +126,9 @@ class Book
     {
         $this->authors->removeElement($author);
 
-        // if ($this->authors->removeElement($author)) {
-        //     $author->removeBook($this);
-        // }
+        if ($this->authors->removeElement($author)) {
+            $author->removeBook($this);
+        }
 
         return $this;
     }

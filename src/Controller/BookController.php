@@ -8,6 +8,7 @@ use App\Repository\BookRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -33,11 +34,9 @@ final class BookController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $imageFile */
             $imageFile = $form->get('image')->getData();
-
             if ($imageFile) {
                 // Générer un nom unique pour le fichier
                 $newFilename = uniqid() . '.' . $imageFile->guessExtension();
-
                 try {
                     // Déplacer le fichier dans le répertoire configuré
                     $imageFile->move(
@@ -48,7 +47,6 @@ final class BookController extends AbstractController
                     // Gérer les erreurs d'upload si nécessaire
                     throw new \Exception('Une erreur est survenue lors de l\'upload de l\'image.');
                 }
-
                 // Enregistrer le nom du fichier dans l'entité
                 $book->setImage($newFilename);
             }
@@ -81,13 +79,16 @@ final class BookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $imageFile */
+            /** @var UploadedFile|null $imageFile */
             $imageFile = $form->get('image')->getData();
+
+            // Supprimer les appels à dd() qui interrompent l'exécution
+            // dd($originalImage);
+            // dd($imageFile);
 
             if ($imageFile) {
                 // Générer un nom unique pour le fichier
                 $newFilename = uniqid() . '.' . $imageFile->guessExtension();
-
                 try {
                     // Déplacer le fichier dans le répertoire configuré
                     $imageFile->move(
@@ -106,22 +107,34 @@ final class BookController extends AbstractController
                     throw new \Exception('Une erreur est survenue lors de l\'upload de l\'image.');
                 }
             } else {
+                // Conserver l'image originale si aucune nouvelle image n'est fournie
                 $book->setImage($originalImage);
+            }
+
+            // Mettre à jour les associations
+            foreach ($book->getCategories() as $category) {
+                $category->addBook($book);
+            }
+
+            foreach ($book->getTags() as $tag) {
+                $tag->addBook($book);
             }
 
             foreach ($book->getLanguages() as $language) {
                 $language->addBook($book);
             }
 
-            $entityManager->flush();
+            foreach ($book->getAuthors() as $author) {
+                $author->addBook($book);
+            }
 
+            $entityManager->flush();
             return $this->redirectToRoute('app_book_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('book/edit.html.twig', [
             'book' => $book,
-            'form' => $form,
-            'src_img' => $book->getImage() ? $this->getParameter('images_directory') . '/' . $book->getImage() : null,
+            'form' => $form->createView(),
         ]);
     }
 

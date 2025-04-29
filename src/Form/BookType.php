@@ -56,7 +56,8 @@ class BookType extends AbstractType
             ])
             ->add('image', FileType::class, [
                 'label' => 'Image du livre',
-                'mapped' => false, // Ce champ n'est pas directement lié à l'entité
+                'mapped' => false,
+                'required' => false,
                 'attr' => [
                     'accept' => 'image/*',
                 ],
