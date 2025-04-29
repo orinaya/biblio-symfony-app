@@ -293,27 +293,29 @@ aside.sidebar {
   display: none;
 }
 
-h1 {
-  color: #4b2d1b;
-  font-size: 2rem;
-}
-
 h2 {
   color: #4b2d1b;
 }
-.app-container {
-  display: flex;
-  min-height: 100vh;
+
+.login-image {
+  flex: 2;
+  background-image: url("../images/login-image.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
 }
 
-.main-content {
+.login-form {
   flex: 1;
-  padding: 20px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.main-content-full {
-  width: 100%;
-  padding: 20px;
+.login-form h2 {
+  margin-bottom: 20px;
+  color: #be774b;
 }
 
 .login-container {
@@ -337,11 +339,6 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.login-form h2 {
-  margin-bottom: 20px;
-  color: #be774b;
 }
 
 .login-form h2 {
