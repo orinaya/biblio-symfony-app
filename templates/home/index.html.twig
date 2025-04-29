@@ -1,19 +1,31 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello HomeController!
+{% block title %}Biblio Tech
 {% endblock %}
 
+
+{# Connected users but not admin #}
 {% block body %}
-	<h1>Bienvenue,
-		{{ app.user.email }}</h1>
+	{% if not is_granted('ROLE_ADMIN') %}
+		<div class="home-header-container">
+			<div class="home-banner-image"></div>
+			<div>
+				<h2>Découvrez tous nos livres et bien plus encore !</h2>
+				<p>Explorez notre vaste collection de livres, accédez à des ressources numériques, et plongez dans un univers dédié à la lecture, la culture et le savoir.</p>
+			</div>
+		</div>
+		<h1>Bienvenue,
+			{{ app.user.email }}</h1>
+	{% endif %}
 
 {% endblock %}
 
+{# Non connected #}
 {% block body_public %}
-	<p>Bienvenue,</p>
-	<p>
-		<a href="{{ path('app_register')}}">S'inscrire</a>
-	</p>
-	<p>
-		<a href="{{ path('app_login')}}">Se connecter</a>
-	</p>
+	<div class="home-header-container">
+		<div class="home-banner-image"></div>
+		<div>
+			<h1>Découvrez tous nos livres et bien plus encore !</h1>
+			<p>Explorez notre vaste collection de livres, accédez à des ressources numériques, et plongez dans un univers dédié à la lecture, la culture et le savoir.</p>
+		</div>
+	</div>
 {% endblock %}

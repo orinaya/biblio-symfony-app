@@ -1,6 +1,6 @@
 # Biblio Tech
 
-![Bannière](assets/images/bilbio-banner.png)
+![Bannière](assets/images/biblio-banner.png)
 
 🌼Bienvenue dans notre adorable <mark style="background-color:hsl(79, 42.70%, 60%);color: #1F4746 ;padding: 1px 3px; border-radius: 3px">**bibliothèque**</mark> !🌼
 
