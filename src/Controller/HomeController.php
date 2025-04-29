@@ -8,6 +8,13 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class HomeController extends AbstractController
 {
+    private $bookRepository;
+
+    public function __construct(\App\Repository\BookRepository $bookRepository)
+    {
+        $this->bookRepository = $bookRepository;
+    }
+
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
@@ -15,7 +22,11 @@ final class HomeController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('home/index.html.twig', []);
+        $books = $this->bookRepository->findBy([], ['id' => 'DESC'], 5);
+
+        return $this->render('home/index.html.twig', [
+            'books' => $books,
+        ]);
     }
 
     #[Route("/private", name: "app_private")]

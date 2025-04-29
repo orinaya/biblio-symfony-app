@@ -26,6 +26,7 @@ final class AuthorController extends AbstractController
     #[Route('/new', name: 'app_author_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $author = new Author();
         $form = $this->createForm(AuthorType::class, $author);
         $form->handleRequest($request);
@@ -76,6 +77,7 @@ final class AuthorController extends AbstractController
     #[Route('/{id}/edit', name: 'app_author_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Author $author, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(AuthorType::class, $author);
         $form->handleRequest($request);
 
@@ -116,6 +118,8 @@ final class AuthorController extends AbstractController
     #[Route('/{id}', name: 'app_author_delete', methods: ['POST'])]
     public function delete(Request $request, Author $author, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         if ($this->isCsrfTokenValid('delete' . $author->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($author);
             $entityManager->flush();

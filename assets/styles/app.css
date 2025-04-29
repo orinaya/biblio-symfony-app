@@ -235,21 +235,25 @@ aside.sidebar {
   margin-top: 10px;
 }
 
-.submenu li {
+.submenu li,
+.home-link {
   margin: 8px 0;
   padding-inline: 16px;
   padding-block: 6px;
   border-radius: 8px;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.submenu li a {
+.submenu li a,
+.home-link a {
   text-decoration: none;
   color: #5d3b2e;
   font-weight: 400;
 }
 
-.submenu li:hover {
+.submenu li:hover,
+.home-link:hover {
   background: hsl(30, 57%, 88%);
 }
 

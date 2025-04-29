@@ -17,4 +17,55 @@
 
 	<h1>Bienvenue,
 		{{ app.user.email }}</h1>
+
+
+	<h2>Accès rapide</h2>
+	<div>
+		<a href="{{ path('app_book_index') }}">
+			<div>
+				Consulter tous les livres
+			</div>
+		</a>
+		<a href="{{ path('app_author_index') }}">
+			<div>
+				Consulter tous les auteurs
+			</div>
+		</a>
+		<a href="{{ path('app_category_index') }}">
+			<div>
+				Consulter toutes les catégories
+			</div>
+		</a>
+
+		{% if is_granted('ROLE_ADMIN') %}
+			<a href="{{ path('app_book_new') }}">
+				<div>
+					Ajouter un livre
+				</div>
+			</a>
+			<a href="{{ path('app_author_new') }}">
+				<div>
+					Ajouter un auteur
+				</div>
+			</a>
+			<a href="{{ path('app_category_new') }}">
+				<div>
+					Ajouter une catégorie
+				</div>
+			</a>
+		{% endif %}
+	</div>
+
+	<h2>Derniers livres ajoutés</h2>
+	<div class="book-list-container">
+		{% for book in books %}
+			<div class="book-card">
+				<a href="{{ path('app_book_show', {'id': book.id}) }}">
+					<img src="{{ asset('uploads/images/' ~ book.image) }}" alt="{{ book.title }}" style="max-width: 100px;">
+					<h3>{{ book.title }}</h3>
+					<p>{{ book.desciption }}</p>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}

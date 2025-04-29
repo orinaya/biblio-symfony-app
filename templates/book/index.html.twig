@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Book index
+{% block title %}Livres
 {% endblock %}
 
 {% block body %}
@@ -33,7 +33,9 @@
 					</td>
 					<td>
 						<a href="{{ path('app_book_show', {'id': book.id}) }}">show</a>
-						<a href="{{ path('app_book_edit', {'id': book.id}) }}">edit</a>
+						{% if is_granted('ROLE_ADMIN') %}
+							<a href="{{ path('app_book_edit', {'id': book.id}) }}">edit</a>
+						{% endif %}
 					</td>
 				</tr>
 			{% else %}
@@ -43,6 +45,7 @@
 			{% endfor %}
 		</tbody>
 	</table>
-
-	<a href="{{ path('app_book_new') }}">Create new</a>
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_book_new') }}">Create new</a>
+	{% endif %}
 {% endblock %}

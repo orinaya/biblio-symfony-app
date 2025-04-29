@@ -7,12 +7,13 @@
 ## Table des matières
 
 1. [Équipe](#1-équipe)
-2. [Stack technique](#2-stack-technique)
-3. [Lancer le projet](#3-lancer-le-projet)
-4. [Modèle Conceptuel des Données (MCD)](#4-modèle-conceptuel-des-données-mcd)
-5. [Proposition de fonctionnalité](#5-proposition-de-fonctionnalité)
-6. [Remarques](#6-remarques)
-7. [Références](#7-références)
+2. [Fonctionnalités](#2-fonctionnalités)
+3. [Stack technique](#3-stack-technique)
+4. [Lancer le projet](#4-lancer-le-projet)
+5. [Modèle Conceptuel des Données (MCD)](#5-modèle-conceptuel-des-données-mcd)
+6. [Proposition de fonctionnalité](#6-proposition-de-fonctionnalité)
+7. [Remarques](#7-remarques)
+8. [Références](#8-références)
 
 ## 1. Équipe
 
@@ -29,7 +30,9 @@ Voici les principales fonctionnalités :
 - <mark style="color:#a9c56d; background-color: transparent">**Réservation de livres**</mark> : Les utilisateurs peuvent réserver jusqu’à 5 livres simultanément, mais un livre ne peut être réservé que par une seule personne à la fois.
 - <mark style="color:#a9c56d; background-color: transparent">**Gestion des livres pour l’administrateur**</mark> : L’administrateur peut ajouter, éditer ou supprimer des livres.
 
-## 2. Stack technique
+![Book Edit](assets/images/book-edit-image.png)
+
+## 3. Stack technique
 
 | Catégorie  | Technologie                                                                                                     |
 | ---------- | --------------------------------------------------------------------------------------------------------------- |
@@ -39,16 +42,16 @@ Voici les principales fonctionnalités :
 | Templating | ![Twig](https://img.shields.io/badge/Twig-0F9D58?style=for-the-badge&logo=twig&logoColor=white)                 |
 | Outils     | ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)                    |
 
-## 3. Lancer le projet
+## 4. Lancer le projet
 
-### 3.1 Prérequis
+### 4.1 Prérequis
 
 - PHP >= 8.2
 - Composer (gestionnaire de dépendances PHP)
 - Docker (pour gérer l'environnement de développement)
 - Docker Compose (pour la gestion des services Docker)
 
-### 3.2 Installation
+### 4.2 Installation
 
 📦 Installez les dépendances du projet
 
@@ -82,7 +85,7 @@ symfony server:start -d
 docker compose up -d
 ```
 
-### 3.3 Liens utiles
+### 4.3 Liens utiles
 
 #### Application
 
@@ -102,23 +105,23 @@ Mot de passe : motdepasse (défini dans .env)
 Base de données : nombasededonnées (défini dans .env)
 ```
 
-### 4. Modèle Conceptuel des Données (MCD)
+## 5. Modèle Conceptuel des Données (MCD)
 
 ![MCD](assets/images/biblio-MCD.png)
 
-### 5. Proposition de fonctionnalité
+## 6. Proposition de fonctionnalité
 
 **Système de recommandations personnalisées**
 
-#### Détail de la spécification
+### Détail de la spécification
 
 Implémentation d'un système de recommandations personnalisées qui suggère aux utilisateurs des livres susceptibles de les intéresser. Les recommandations sont basées sur l'historique d'emprunts de l'utilisateur et les tendances générales de la bibliothèque.
 
-#### Motivation
+### Motivation
 
 Cette spécification permet de dynamiser l'application en encourageant les utilisateurs à emprunter des livres, tout en exploitant les données déjà existantes.
 
-#### Nouveaux composants à développer
+### Nouveaux composants à développer
 
 **Modèle (Entités)**
 
@@ -141,6 +144,10 @@ Widget de recommandation : Composant intégrable dans d'autres pages
 "Vous pourriez aussi aimer..." sur la page de détail d'un livre
 "Découvertes de la semaine" sur la page d'accueil
 
-### 6. Remarques
+## 7. Remarques
 
-### 7. Références
+## 8. Références
+
+1. [Symfony Docs](https://symfony.com/doc/current/index.html) - https://symfony.com/doc/current/index.html
+2. Dépôt GitHub [@paul-schuhm](https://github.com/paul-schuhm) - https://github.com/paul-schuhm/app-symfony
+3. Dépôt GitHub [@paul-schuhm](https://github.com/paul-schuhm) - https://github.com/paul-schuhm/framework-php

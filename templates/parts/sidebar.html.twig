@@ -23,6 +23,9 @@
 
 		<nav class="menu">
 			<ul>
+				<li class="submenu home-link">
+					<a href="{{ path('app_home') }}">Accueil</a>
+				</li>
 				<li>
 					<button class="accordion-btn active" onclick="toggleAccordion('livres-menu')">
 						<div>
@@ -41,6 +44,9 @@
 						<li>
 							<a href="{{ path('app_category_index') }}">Toutes les catégories</a>
 						</li>
+						<li>
+							<a href="{{ path('app_tag_index') }}">Tous les tags</a>
+						</li>
 
 						{% if app.user and 'ROLE_ADMIN' in app.user.roles %}
 							<li>
@@ -54,13 +60,6 @@
 							</li>
 							<li>
 								<a href="{{ path('app_tag_new') }}">Ajouter un tag</a>
-							</li>
-
-							<li>
-								<a href="#">Catégories</a>
-							</li>
-							<li>
-								<a href="#">Tags</a>
 							</li>
 						{% endif %}
 					</ul>
