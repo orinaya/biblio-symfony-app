@@ -16,16 +16,14 @@
 	</head>
 	<body>
 		<div class="app-container">
-			{% if app.user %}
+			{% if app.request.attributes.get('_route') not in ['app_login', 'app_register'] %}
 				{% block sidebar %}
 					{% include 'parts/sidebar.html.twig' %}
 				{% endblock %}
-				<main class="main-content"> {% block body %}{% endblock %}
-					</main>
-				{% else %}
-					<main class="main-content-full"> {% block body_public %}{% endblock %}
-						</main>
-					{% endif %}
-				</div>
-			</body>
-		</html>
+			{% endif %}
+
+			<main class="main-content"> {% block body %}{% endblock %}
+				</main>
+			</div>
+		</body>
+	</html>
