@@ -357,7 +357,8 @@ h2 {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+.custom-input {
   width: 100%;
   padding: 12px;
   font-size: 1rem;
@@ -369,7 +370,7 @@ input[type="password"] {
   padding-top: 16px;
   box-sizing: border-box;
 }
-label.form-label {
+label {
   position: absolute;
   top: 50%;
   left: 16px;
@@ -388,15 +389,26 @@ label.form-label {
 
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+.custom-input:focus {
   border-color: #be774b;
   box-shadow: 0 0 5px rgba(190, 119, 75, 0.5);
 }
 
-input[type="text"]:focus + label.form-label,
-input[type="email"]:focus + label.form-label,
-input[type="password"]:focus + label.form-label,
-input.has-content + label.form-label {
+input[type="text"]:focus + labe,
+input[type="email"]:focus + label,
+input[type="password"]:focus + label,
+.custom-input:focus + label,
+input.has-content + label {
+  top: -8px;
+  left: 16px;
+  font-size: 0.75rem;
+  color: #4b2d1b;
+  padding: 0 5px;
+  transform: translateY(0);
+}
+
+input.has-content + label {
   top: -8px;
   left: 16px;
   font-size: 0.75rem;
@@ -470,4 +482,16 @@ button > span {
   background-color: #fff;
   border-radius: 20px;
   padding: 20px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
 }
