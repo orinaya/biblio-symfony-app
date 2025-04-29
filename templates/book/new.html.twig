@@ -5,6 +5,5 @@
 
 {% block body %}
 	<h1>Ajouter un nouveau livre</h1>
-
-	{% include 'book/form.html.twig' with {'second_button_label': 'Publier'} %}
+	{% include 'book/form.html.twig' with {'add_button_label': 'Publier', 'show_delete_button': false} %}
 {% endblock %}

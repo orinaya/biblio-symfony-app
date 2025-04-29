@@ -3,14 +3,16 @@
 <div class="book-form-row">
 	<div class="book-form-col">
 		<div class="image-upload">
-			<label for="{{ form.image.vars.id }}">
-				<i class="icon-gallery-upload"></i>
-				{{ add_update|default('Ajouter') }}
-				l'image du livre
-			</label>
-			<p>Format JPEG, PNG jusqu'à 50MB.</p>
+			<div style="text-align:center;">
+				<label for="{{ form.image.vars.id }}">
+					<i class="icon-gallery-upload"></i>
+					{{ add_update|default('Ajouter') }}
+					l'image du livre
+				</label>
+				<p>Format JPEG, PNG jusqu'à 50MB.</p>
+			</div>
 			<img class="image-preview" src="{{ src_img|default('#') }}" alt="Prévisualisation de l'image"/>
-			{{ form_widget(form.image, {'attr': {'class': 'form-control-file', 'style': 'display:none;', 'onchange': 'previewImage(event)'}}) }}
+			{{ form_widget(form.image, {'attr': {'class': 'form-control-file', 'style': 'visibility:hidden;', 'onchange': 'previewImage(event)'}}) }}
 			<button type="button" class="base-btn" onclick="document.getElementById('{{ form.image.vars.id }}').click()">Charger un fichier</button>
 		</div>
 	</div>
@@ -39,42 +41,56 @@
 			{{ form_label(form.isbn) }}
 			{{ form_widget(form.isbn, {'attr': {'class': 'form-control'}}) }}
 		</div>
+
+		<div class="form-group">
+			<label>Catégories</label>
+			<div class="pill-container">
+				{% for category in form.categories %}
+					<label class="pill">
+						{{ form_widget(category) }}
+						{{ category.vars.label }}
+					</label>
+				{% endfor %}
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label>Tags</label>
+			<div class="pill-container">
+				{% for tag in form.tags %}
+					<label class="pill">
+						{{ form_widget(tag) }}
+						{{ tag.vars.label }}
+					</label>
+				{% endfor %}
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label>Langues</label>
+			<div class="pill-container">
+				{% for language in form.languages %}
+					<label class="pill">
+						{{ form_widget(language) }}
+						{{ language.vars.label }}
+					</label>
+				{% endfor %}
+			</div>
+		</div>
 	</div>
 </div>
 
-<div class="book-form-row">
-	<div class="book-form-col">
-		<div class="form-group">
-			{{ form_label(form.categories) }}
-			<div class="category-options">
-				{{ form_widget(form.categories) }}
-			</div>
-		</div>
-	</div>
-	<div class="book-form-col">
-		<div class="form-group">
-			{{ form_label(form.tags) }}
-			<div class="tag-options">
-				{{ form_widget(form.tags) }}
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="book-form-row">
-	<div class="book-form-col">
-		<div class="form-group">
-			{{ form_label(form.languages) }}
-			<div class="language-options">
-				{{ form_widget(form.languages) }}
-			</div>
-		</div>
-	</div>
-</div>
 
 <div class="button-group">
-	<a href="{{ path('app_book_index') }}" class="back-btn">{{ first_button_label|default('Annuler') }}</a>
-	<button type="submit" class="add-btn">{{ second_button_label|default('Publier') }}</button>
+	<a href="{{ path('app_book_index') }}" class="back-btn">{{ back_button_label|default('Annuler') }}</a>
+	<button type="submit" class="add-btn">
+		<span class="icon-paper-plane"></span>
+		{{ add_button_label|default('Publier') }}
+	</button>
+	{{ form_end(form) }}
+	{% if show_delete_button %}
+		{{ include('book/_delete_form.html.twig', {'book': book, 'del_button_label': del_button_label|default('Supprimer')}) }}
+	{% endif %}
 </div>
 
 <script>
@@ -90,6 +106,15 @@ preview.style.display = 'block';
 reader.readAsDataURL(input.files[0]);
 }
 }
-</script>
 
-{{ form_end(form) }}
+document.querySelectorAll('.pill input[type="checkbox"]').forEach((checkbox) => {
+checkbox.addEventListener('change', (event) => {
+const pill = event.target.closest('.pill');
+if (event.target.checked) {
+pill.classList.add('selected');
+} else {
+pill.classList.remove('selected');
+}
+});
+});
+</script>

@@ -548,6 +548,92 @@ aside.sidebar {
     width: 100%;
     margin-bottom: 20px;
 }
+.add-btn {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:40px;
+    gap: 10px;
+    background: hsl(79, 43%, 43%);
+    color: hsl(77, 41%, 90%);
+    text-align: center;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+
+    &:hover {
+        background: hsl(79, 43%, 30%);
+        cursor: pointer;
+    }
+}
+
+.back-btn {
+    text-decoration: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:40px;
+    width:fit-content;
+    gap: 10px;
+    background: hsl(30, 57%, 85%);
+    color: #5d3b2e;
+    text-align: center;
+    padding: 0 16px;
+    border-radius: 8px;
+
+    &:hover {
+        background: hsl(30, 57%, 80%);
+        cursor: pointer;
+    }
+}
+
+.del-btn {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:40px;
+    gap: 10px;
+    background: hsl(0, 60%, 63%) !important;
+    color: hsl(0, 60%, 98%) !important;
+    text-align: center;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+
+    &:hover {
+        background: hsl(0, 60%, 50%) !important;
+        cursor: pointer;
+    }
+}
+
+.base-btn {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:40px;
+    gap: 10px;
+    background: hsl(270, 6%, 94%);
+    color: hsl(250, 5%, 24%);
+    text-align: center;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+
+    &:hover {
+        background: hsl(270, 6%, 90%);
+        cursor: pointer;
+    }
+}
 
 input[type="text"],
 input[type="email"],
@@ -645,82 +731,16 @@ button > span{
     gap: 8px;
 }
 
-.add-btn {
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height:40px;
-    gap: 10px;
-    background: hsl(79, 43%, 43%);
-    color: hsl(77, 41%, 90%);
-    text-align: center;
-    padding: 0 16px;
-    border-radius: 8px;
-    font-weight: 500;
-    font-family: Montserrat, sans-serif;
-    font-size: 1rem;
-
-    &:hover {
-        background: hsl(79, 43%, 30%);
-        cursor: pointer;
-    }
-}
-
-.back-btn {
-    text-decoration: none;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height:40px;
-    width:fit-content;
-    gap: 10px;
-    background: hsl(0, 60%, 63%);
-    color: hsl(0, 60%, 98%);
-    text-align: center;
-    padding: 0 16px;
-    border-radius: 8px;
-
-    &:hover {
-        background: hsl(0, 60%, 50%);
-        cursor: pointer;
-    }
-}
-
-.base-btn {
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height:40px;
-    gap: 10px;
-    background: hsl(270, 6%, 94%);
-    color: hsl(250, 5%, 24%);
-    text-align: center;
-    padding: 0 16px;
-    border-radius: 8px;
-    font-weight: 500;
-    font-family: Montserrat, sans-serif;
-    font-size: 1rem;
-
-    &:hover {
-        background: hsl(270, 6%, 90%);
-        cursor: pointer;
-    }
-}
+/* Styles pour les formulaires */
 
 .book-form {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
+    padding-right: 20px;
 }
 
 .book-form-row {
     display: flex;
     margin-bottom: 20px;
-    gap: 20px;
+    gap: 30px;
 }
 
 .book-form-col {
@@ -783,15 +803,17 @@ button > span{
 }
 
 .image-preview {
-    max-width: 40%;
+    max-height: 35rem;
     display: none;
     border: 1px solid #ccc;
 }
 
 .button-group {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 20px;
+    width: 100%;
+    gap:15px;
 }
 
 .btn-cancel {
@@ -832,4 +854,36 @@ button > span{
 .tag-option input,
 .language-option input {
     margin-right: 5px;
+}
+
+/* Styles pour les checkboxes en pills */
+.pill-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #FAF2EB;
+    color: #4B2D1B;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pill input[type="checkbox"] {
+    display: none;
+}
+
+.pill:hover,
+.pill.selected,
+.pill:has(input[type="checkbox"]:checked){
+    background-color: #F7EADE;
+    border-color: #BE774B;
+    color: #4B2D1B;
 }

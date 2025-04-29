@@ -24,6 +24,7 @@ class BookType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Titre du livre',
+                'required' => true,
                 'attr' => [
                     'placeholder' => 'Titre du livre',
                 ],
@@ -45,32 +46,30 @@ class BookType extends AbstractType
                     'placeholder' => 'Année de publication',
                 ],
             ])
-            ->add('isbn', null, [
+            ->add('isbn', TextType::class, [
                 'label' => 'ISBN',
                 'required' => true,
                 'attr' => [
                     'placeholder' => 'Ex: 978-2-1234-5680-3',
-                    // 'class' => 'form-control'
                 ],
                 'help' => 'Format ISBN-10 ou ISBN-13 requis'
             ])
             ->add('image', FileType::class, [
                 'label' => 'Image du livre',
                 'mapped' => false, // Ce champ n'est pas directement lié à l'entité
-                'required' => false,
-                // 'attr' => [
-                //     'accept' => 'image/*', // Optionnel : limite les fichiers aux images
-                // ],
-                'constraints' => [
-                    new File([
-                        'maxSize' => '50M',
-                        'mimeTypes' => [
-                            'image/jpeg',
-                            'image/png',
-                        ],
-                        'mimeTypesMessage' => 'Veuillez télécharger une image valide (JPEG, PNG)',
-                    ])
+                'attr' => [
+                    'accept' => 'image/*',
                 ],
+                // 'constraints' => [
+                //     new File([
+                //         'maxSize' => '50M',
+                //         'mimeTypes' => [
+                //             'image/jpeg',
+                //             'image/png',
+                //         ],
+                //         'mimeTypesMessage' => 'Veuillez télécharger une image valide (JPEG, PNG)',
+                //     ])
+                // ],
             ])
             ->add('authors', EntityType::class, [
                 'class' => Author::class,
@@ -78,7 +77,6 @@ class BookType extends AbstractType
                     return $author->getFirstname() . ' ' . $author->getLastname();
                 },
                 'multiple' => true,
-                'required' => false,
                 'expanded' => false,
                 'label' => 'Auteur(s) du livre',
                 'attr' => [
@@ -89,7 +87,6 @@ class BookType extends AbstractType
                 'class' => Tag::class,
                 'choice_label' => 'name',
                 'multiple' => true,
-                'required' => false,
                 'expanded' => true,
                 'label' => 'Tags',
             ])
@@ -97,7 +94,6 @@ class BookType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'multiple' => true,
-                'required' => false,
                 'expanded' => true,
                 'label' => 'Catégories',
             ])

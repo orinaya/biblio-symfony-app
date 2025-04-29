@@ -6,7 +6,11 @@
 {% block body %}
 	<h1>Modifier le livre</h1>
 
-	{% include 'book/form.html.twig' with {'second_button_label': 'Mettre à jour', 'src_img': asset('uploads/images/' ~ book.image), 'add_update':'Modifier'} %}
+	{% include 'book/form.html.twig' with {
+		'add_button_label': 'Mettre à jour', 
+		'src_img': asset('uploads/images/' ~ book.image), 
+		'add_update':'Modifier', 
+		'show_delete_button': true} %}
 
 	<script>
 		image = document.querySelector('.image-preview');
@@ -17,7 +21,24 @@ imageWrapper.style.justifyContent = 'center';
 imageWrapper.style.gap = '10px';
 } else {
 image.style.display = 'block';
-imageWrapper.style.justifyContent = 'space-around';
+// imageWrapper.style.justifyContent = 'space-evenly';
+}
+
+function previewImage(event) {
+const input = event.target;
+const preview = document.querySelector('.image-preview');
+const defaultSrc = preview.getAttribute('src'); // Récupère la source actuelle de l'image
+
+if (input.files && input.files[0]) {
+const reader = new FileReader();
+reader.onload = function (e) {
+preview.src = e.target.result; // Définit la nouvelle source en Base64
+preview.style.display = 'block';
+};
+reader.readAsDataURL(input.files[0]);
+} else if (defaultSrc && defaultSrc !== '#') {
+console.log('Image existante, aucune nouvelle image sélectionnée.');
+}
 }
 	</script>
 

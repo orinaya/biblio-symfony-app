@@ -76,6 +76,7 @@ final class BookController extends AbstractController
     #[Route('/{id}/edit', name: 'app_book_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Book $book, EntityManagerInterface $entityManager): Response
     {
+        $originalImage = $book->getImage();
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
@@ -93,13 +94,23 @@ final class BookController extends AbstractController
                         $this->getParameter('images_directory'), // Défini dans services.yaml
                         $newFilename
                     );
+                    if ($originalImage) {
+                        $oldImagePath = $this->getParameter('images_directory') . '/' . $originalImage;
+                        if (file_exists($oldImagePath)) {
+                            unlink($oldImagePath);
+                        }
+                    }
+                    $book->setImage($newFilename);
                 } catch (FileException $e) {
                     // Gérer les erreurs d'upload si nécessaire
                     throw new \Exception('Une erreur est survenue lors de l\'upload de l\'image.');
                 }
+            } else {
+                $book->setImage($originalImage);
+            }
 
-                // Enregistrer le nom du fichier dans l'entité
-                $book->setImage($newFilename);
+            foreach ($book->getLanguages() as $language) {
+                $language->addBook($book);
             }
 
             $entityManager->flush();
@@ -110,13 +121,14 @@ final class BookController extends AbstractController
         return $this->render('book/edit.html.twig', [
             'book' => $book,
             'form' => $form,
+            'src_img' => $book->getImage() ? $this->getParameter('images_directory') . '/' . $book->getImage() : null,
         ]);
     }
 
     #[Route('/{id}', name: 'app_book_delete', methods: ['POST'])]
     public function delete(Request $request, Book $book, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $book->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $book->getId(), $request->request->get('_token'))) {
             $entityManager->remove($book);
             $entityManager->flush();
         }
