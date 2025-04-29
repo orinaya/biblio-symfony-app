@@ -293,27 +293,29 @@ aside.sidebar {
   display: none;
 }
 
-h1 {
-  color: #4b2d1b;
-  font-size: 2rem;
-}
-
 h2 {
   color: #4b2d1b;
 }
-.app-container {
-  display: flex;
-  min-height: 100vh;
+
+.login-image {
+  flex: 2;
+  background-image: url("../images/login-image.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
 }
 
-.main-content {
+.login-form {
   flex: 1;
-  padding: 20px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.main-content-full {
-  width: 100%;
-  padding: 20px;
+.login-form h2 {
+  margin-bottom: 20px;
+  color: #be774b;
 }
 
 .login-container {
@@ -344,20 +346,102 @@ h2 {
   color: #be774b;
 }
 
-.login-form h2 {
-  margin-bottom: 20px;
-  color: #be774b;
-}
-
 .input-container {
   position: relative;
   width: 100%;
   margin-bottom: 20px;
 }
+.add-btn {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  gap: 10px;
+  background: hsl(79, 43%, 43%);
+  color: hsl(77, 41%, 90%);
+  text-align: center;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+
+  &:hover {
+    background: hsl(79, 43%, 30%);
+    cursor: pointer;
+  }
+}
+
+.back-btn {
+  text-decoration: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: fit-content;
+  gap: 10px;
+  background: hsl(30, 57%, 85%);
+  color: #5d3b2e;
+  text-align: center;
+  padding: 0 16px;
+  border-radius: 8px;
+
+  &:hover {
+    background: hsl(30, 57%, 80%);
+    cursor: pointer;
+  }
+}
+
+.del-btn {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  gap: 10px;
+  background: hsl(0, 60%, 63%) !important;
+  color: hsl(0, 60%, 98%) !important;
+  text-align: center;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+
+  &:hover {
+    background: hsl(0, 60%, 50%) !important;
+    cursor: pointer;
+  }
+}
+
+.base-btn {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  gap: 10px;
+  background: hsl(270, 6%, 94%);
+  color: hsl(250, 5%, 24%);
+  text-align: center;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+
+  &:hover {
+    background: hsl(270, 6%, 90%);
+    cursor: pointer;
+  }
+}
 
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="number"],
 .custom-input {
   width: 100%;
   padding: 12px;
@@ -370,7 +454,8 @@ input[type="password"],
   padding-top: 16px;
   box-sizing: border-box;
 }
-label {
+
+.form-label {
   position: absolute;
   top: 50%;
   left: 16px;
@@ -390,25 +475,18 @@ label {
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
+input[type="number"]:focus,
 .custom-input:focus {
   border-color: #be774b;
   box-shadow: 0 0 5px rgba(190, 119, 75, 0.5);
 }
 
-input[type="text"]:focus + labe,
-input[type="email"]:focus + label,
-input[type="password"]:focus + label,
+input[type="text"]:focus + label.form-label,
+input[type="email"]:focus + label.form-label,
+input[type="password"]:focus + label.form-label,
+input[type="number"]:focus + label.form-label,
 .custom-input:focus + label,
-input.has-content + label {
-  top: -8px;
-  left: 16px;
-  font-size: 0.75rem;
-  color: #4b2d1b;
-  padding: 0 5px;
-  transform: translateY(0);
-}
-
-input.has-content + label {
+input.has-content + label.form-label {
   top: -8px;
   left: 16px;
   font-size: 0.75rem;
@@ -453,6 +531,169 @@ button[type="submit"]:hover {
   position: relative;
 }
 
+button > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Styles pour les formulaires */
+
+.book-form {
+  padding-right: 20px;
+}
+
+.book-form-row {
+  display: flex;
+  margin-bottom: 20px;
+  gap: 30px;
+}
+
+.book-form-col {
+  flex: 1;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #4b2d1b;
+  font-weight: 500;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  color: #4b2d1b;
+  background-color: #faf2eb;
+  border: 1px solid #f7eade;
+  border-radius: 10px;
+  outline: none;
+  max-width: -moz-available;
+}
+
+.form-control:focus {
+  border-color: #be774b;
+  box-shadow: 0 0 5px rgba(190, 119, 75, 0.5);
+}
+
+.book-form-col:has(.image-upload) {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.image-upload {
+  border: 2px dashed #ccc;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  > p {
+    margin: 0;
+  }
+}
+
+.image-preview {
+  max-height: 35rem;
+  display: none;
+  border: 1px solid #ccc;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+  gap: 15px;
+}
+
+.btn-cancel {
+  padding: 10px 20px;
+  background-color: #e57373;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-submit {
+  padding: 10px 20px;
+  background-color: #809d3f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.category-options,
+.tag-options,
+.language-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.category-option,
+.tag-option,
+.language-option {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.category-option input,
+.tag-option input,
+.language-option input {
+  margin-right: 5px;
+}
+
+/* Styles pour les checkboxes en pills */
+.pill-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #faf2eb;
+  color: #4b2d1b;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pill input[type="checkbox"] {
+  display: none;
+}
+
+.pill:hover,
+.pill.selected,
+.pill:has(input[type="checkbox"]:checked) {
+  background-color: #f7eade;
+  border-color: #be774b;
+  color: #4b2d1b;
+}
 button > span {
   display: flex;
   justify-content: center;

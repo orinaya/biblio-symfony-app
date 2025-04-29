@@ -35,11 +35,27 @@
 						<li>
 							<a href="{{ path('app_book_index') }}">Tous les livres</a>
 						</li>
+						<li>
+							<a href="{{ path('app_author_index') }}">Tous les auteurs</a>
+						</li>
+						<li>
+							<a href="{{ path('app_category_index') }}">Toutes les catégories</a>
+						</li>
 
 						{% if app.user and 'ROLE_ADMIN' in app.user.roles %}
 							<li>
 								<a href="{{ path('app_book_new') }}">Ajouter un livre</a>
 							</li>
+							<li>
+								<a href="{{ path('app_author_new') }}">Ajouter un auteur</a>
+							</li>
+							<li>
+								<a href="{{ path('app_category_new') }}">Ajouter une catégorie</a>
+							</li>
+							<li>
+								<a href="{{ path('app_tag_new') }}">Ajouter un tag</a>
+							</li>
+
 							<li>
 								<a href="#">Catégories</a>
 							</li>

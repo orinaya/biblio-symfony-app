@@ -52,6 +52,9 @@ class Book
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
+    #[ORM\Column(length: 20, unique: true)]
+    private ?string $isbn = null;
+
     public function __construct()
     {
         $this->authors = new ArrayCollection();
@@ -113,7 +116,7 @@ class Book
     {
         if (!$this->authors->contains($author)) {
             $this->authors->add($author);
-            // $author->addBook($this);
+            $author->addBook($this);
         }
 
         return $this;
@@ -123,9 +126,9 @@ class Book
     {
         $this->authors->removeElement($author);
 
-        // if ($this->authors->removeElement($author)) {
-        //     $author->removeBook($this);
-        // }
+        if ($this->authors->removeElement($author)) {
+            $author->removeBook($this);
+        }
 
         return $this;
     }
@@ -219,6 +222,18 @@ class Book
     public function setImage(?string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getIsbn(): ?string
+    {
+        return $this->isbn;
+    }
+
+    public function setIsbn(string $isbn): static
+    {
+        $this->isbn = $isbn;
 
         return $this;
     }
