@@ -5,7 +5,7 @@
 
 {# Connected users but not admin #}
 {% block body %}
-	{% if not is_granted('ROLE_ADMIN') %}
+	{% if is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN') %}
 		<div class="home-header-container">
 			<div class="home-banner-image"></div>
 			<div>
@@ -13,19 +13,8 @@
 				<p>Explorez notre vaste collection de livres, accédez à des ressources numériques, et plongez dans un univers dédié à la lecture, la culture et le savoir.</p>
 			</div>
 		</div>
-		<h1>Bienvenue,
-			{{ app.user.email }}</h1>
 	{% endif %}
 
-{% endblock %}
-
-{# Non connected #}
-{% block body_public %}
-	<div class="home-header-container">
-		<div class="home-banner-image"></div>
-		<div>
-			<h1>Découvrez tous nos livres et bien plus encore !</h1>
-			<p>Explorez notre vaste collection de livres, accédez à des ressources numériques, et plongez dans un univers dédié à la lecture, la culture et le savoir.</p>
-		</div>
-	</div>
+	<h1>Bienvenue,
+		{{ app.user.email }}</h1>
 {% endblock %}

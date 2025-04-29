@@ -22,13 +22,8 @@
 				{% endblock %}
 			{% endif %}
 
-			{% if app.user %}
-				<main class="main-content"> {% block body %}{% endblock %}
-					</main>
-				{% else %}
-					<main class="main-content-full"> {% block body_public %}{% endblock %}
-						</main>
-					{% endif %}
-				</div>
-			</body>
-		</html>
+			<main class="main-content"> {% block body %}{% endblock %}
+				</main>
+			</div>
+		</body>
+	</html>
