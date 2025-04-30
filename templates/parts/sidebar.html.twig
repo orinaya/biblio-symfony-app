@@ -65,26 +65,6 @@
 					</ul>
 				</li>
 
-				{% if app.user and 'ROLE_ADMIN' in app.user.roles %}
-					<li>
-						<button class="accordion-btn" onclick="toggleAccordion('clients-menu')">
-							<div>
-								<span class="icon-user-circle"></span>
-								Clients
-							</div>
-							<span class="icon-alt-arrow-down"></span>
-						</button>
-						<ul id="clients-menu" class="submenu hidden">
-							<li>
-								<a href="#">Tous les clients</a>
-							</li>
-							<li>
-								<a href="#">Ajouter un client</a>
-							</li>
-						</ul>
-					</li>
-				{% endif %}
-
 				{% if app.user %}
 					<li>
 						<button class="accordion-btn" onclick="toggleAccordion('reservations-menu')">
@@ -97,40 +77,37 @@
 						<ul id="reservations-menu" class="submenu hidden">
 							{% if 'ROLE_ADMIN' in app.user.roles %}
 								<li>
-									<a href="#">Toutes les réservations</a>
+									<a href="{{ path('app_reservation') }}">Toutes les réservations</a>
+								</li>
+							{% else %}
+								<li>
+									<a href="{{ path('app_reservation') }}">Mes réservations</a>
 								</li>
 							{% endif %}
-							<li>
-								<a href="#">Nouvelle réservation</a>
-							</li>
-						</ul>
+						</li>
 					</li>
-				{% endif %}
-			</ul>
-		</nav>
-	</div>
-
-	{% if app.user %}
-		<div class="sidebar-footer">
-			<a href="#" class="settings-btn">
-				<span class="icon-settings"></span>
-				Paramètres
-			</a>
-			<a href="{{ path('app_logout') }}" class="logout-btn">
-				<span class="icon-logout"></span>
-				Se déconnecter
-			</a>
-		</div>
-	{% else %}
-		<div class="sidebar-footer">
-			<a href="{{ path('app_register') }}" class="settings-btn">
-				<span class="icon-user-circle"></span>
-				S'inscrire
-			</a>
-			<a href="{{ path('app_login') }}" class="logout-btn">
-				<span class="icon-login"></span>
-				Se connecter
-			</a>
-		</div>
-	{% endif %}
-</aside>
+				</ul>
+			</li>
+		{% endif %}
+	</ul>
+</nav></div>{% if app.user %}
+<div class="sidebar-footer">
+	<a href="#" class="settings-btn">
+		<span class="icon-settings"></span>
+		Paramètres
+	</a>
+	<a href="{{ path('app_logout') }}" class="logout-btn">
+		<span class="icon-logout"></span>
+		Se déconnecter
+	</a>
+</div>{% else %}
+<div class="sidebar-footer">
+	<a href="{{ path('app_register') }}" class="settings-btn">
+		<span class="icon-user-circle"></span>
+		S'inscrire
+	</a>
+	<a href="{{ path('app_login') }}" class="logout-btn">
+		<span class="icon-login"></span>
+		Se connecter
+	</a>
+</div>{% endif %}</aside>

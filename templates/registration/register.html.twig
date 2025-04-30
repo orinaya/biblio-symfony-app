@@ -7,16 +7,16 @@
 	{% for flash_error in app.flashes('verify_email_error') %}
 		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 	{% endfor %}
-	<form method="post">
-		<div class="login-container">
-			<div class="login-image"></div>
-			<div class="login-form">
-				<h2>Inscription</h2>
+	{{ form_start(registrationForm) }}
+	<div class="login-container">
+		<div class="login-image"></div>
+		<div class="login-form">
+			<h2>Inscription</h2>
 
 
-				<div class="form-field">
-					<div class="input-container">
-						{{ form_widget(registrationForm.email, {
+			<div class="form-field">
+				<div class="input-container">
+					{{ form_widget(registrationForm.email, {
                             'attr': {
                                 'class': 'custom-input',
                                 'autocomplete': 'email',
@@ -24,43 +24,43 @@
                                 'autofocus': 'autofocus'
                             }
                         }) }}
-						{{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
-						{{ form_errors(registrationForm.email, {'attr': {'class': 'error-message'}}) }}
-					</div>
+					{{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_errors(registrationForm.email, {'attr': {'class': 'error-message'}}) }}
 				</div>
+			</div>
 
-				<div class="form-field">
-					<div class="input-container">
-						{{ form_widget(registrationForm.plainPassword, {
+			<div class="form-field">
+				<div class="input-container">
+					{{ form_widget(registrationForm.plainPassword, {
                             'attr': {
                                 'class': 'custom-input',
                                 'autocomplete': 'current-password',
                                 'required': 'required'
                             }
                         }) }}
-						{{ form_label(registrationForm.plainPassword, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
-						{{ form_errors(registrationForm.plainPassword, {'attr': {'class': 'error-message'}}) }}
-					</div>
+					{{ form_label(registrationForm.plainPassword, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_errors(registrationForm.plainPassword, {'attr': {'class': 'error-message'}}) }}
 				</div>
+			</div>
 
-				<div class="form-field">
-					<div class="input-container">
-						{{ form_widget(registrationForm.agreeTerms, {
+			<div class="form-field">
+				<div class="input-container">
+					{{ form_widget(registrationForm.agreeTerms, {
                             'attr': {
                                 'class': 'custom-checkbox',
                             }
                         }) }}
-						{{ form_label(registrationForm.agreeTerms, 'Accepter les conditions générales', {'label_attr': {'class': 'form-label'}}) }}
-						{{ form_errors(registrationForm.agreeTerms, {'attr': {'class': 'error-message'}}) }}
-					</div>
+					{{ form_label(registrationForm.agreeTerms, 'Accepter les conditions générales', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_errors(registrationForm.agreeTerms, {'attr': {'class': 'error-message'}}) }}
 				</div>
-
-				<button type="submit" class="logout-btn">
-					<span class="icon-login"></span>S'inscrire
-				</button>
-
-				<a href="{{ path('app_login') }}" class="login-link">Déjà inscrit ? Se connecter</a>
 			</div>
+
+			<button type="submit" class="logout-btn">
+				<span class="icon-login"></span>S'inscrire
+			</button>
+
+			<a href="{{ path('app_login') }}" class="login-link">Déjà inscrit ? Se connecter</a>
 		</div>
-	</form>
+	</div>
+	{{ form_end(registrationForm) }}
 {% endblock %}
